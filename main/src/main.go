@@ -12,9 +12,9 @@ import (
 )
 
 // if
-func pfile(){
+func pfile() {
 	const filename = "src/123.txt"
-	if contents, err := ioutil.ReadFile(filename); err == nil{
+	if contents, err := ioutil.ReadFile(filename); err == nil {
 		fmt.Println(string(contents))
 	} else {
 		fmt.Println("connot print file contents:", err)
@@ -45,7 +45,7 @@ func eval(a, b int, op string) int {
 // for
 func convertToBin(n int) string {
 	result := ""
-	for ; n > 0; n /= 2{
+	for ; n > 0; n /= 2 {
 		lsb := n % 2
 		result = strconv.Itoa(lsb) + result
 	}
@@ -64,7 +64,7 @@ func printFile(filename string) {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		fmt. Println(scanner.Text())
+		fmt.Println(scanner.Text())
 	}
 }
 
@@ -94,9 +94,21 @@ func pow(a, b int) int {
 }
 
 // pointer
+func swap(a, b *int) {
+	tmp := *a
+	*a = *b
+	*b = tmp
+}
 
+func swap1(a, b *int) {
+	*a, *b = *b, *a
+}
 
-func main(){
+func swap2(a, b int) (int, int) {
+	return b, a
+}
+
+func main() {
 
 	// hello world
 	fmt.Println("Hello World!")
@@ -105,7 +117,7 @@ func main(){
 	pfile()
 
 	// switch test
-	fmt.Println(eval(13,5, "%"))
+	fmt.Println(eval(13, 5, "%"))
 
 	// for test
 	fmt.Println(convertToBin(5), convertToBin(13), convertToBin(1234534253))
@@ -118,4 +130,9 @@ func main(){
 	fmt.Println(q, r)
 	fmt.Println(apply(pow, 3, 4))
 	fmt.Println(sum(1, 2, 3, 4, 5))
+
+	// pointer
+	a, b := 3, 4
+	swap1(&a, &b)
+	fmt.Println(a, b)
 }

@@ -1,9 +1,9 @@
-package inc
+package main
 
 import "fmt"
 
-func enums(){
-	const(
+func enums() {
+	const (
 		b = 1 << (10 * iota)
 		kb
 		mb

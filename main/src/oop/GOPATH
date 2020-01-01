@@ -1,0 +1,22 @@
+
+1. 默认再~/go(unix, linux), %USERPROFILE%\go(windows)
+
+2.官方推荐:所有项目和第三方库都放在同一个GOPATH下
+
+3.也可以将每个项目放在不同的GOPATH
+
+ go get获取第三方库
+
+// 绕过墙下载第三方库
+1.go get -v github.com/gpmgo/gopm
+
+// src
+    源文件
+
+   pkg
+    编译过程中中间文件
+
+   bin
+    可执行文件
+
+// 每个目录都是一个package 只能有一个main函数入口
