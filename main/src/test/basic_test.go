@@ -6,7 +6,9 @@ import "testing"
 // 1. go test . 测试当前目录下文件
 // 2. go test -coverprofile=c.out  测试代码覆盖率输出到c.out文件
 // 3. go tool cover -html c.out 将c.out文件已html方式 输出出来
-// 4. go test bench . 对当前文件夹下 文件进行性能测试
+// 4. go test -bench . 对当前文件夹下 文件进行性能测试
+// 5. go test -bench . -cpuprofile cpu.out cpu使用率文件
+// 6. go tool pprof cpu.out 查看cpu.out二进制文件 进入bin 使用web方式查看
 
 // 测试
 // Test开头 接下来字母要大写 使用模板测试
@@ -55,6 +57,12 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 func BenchmarkSubstr(b *testing.B) {
 	s := "黑化肥挥发发灰会花飞灰化肥挥发发黑会飞花"
 	ans := 8
+	for i := 0; i < 13; i++ {
+		s += s
+	}
+
+	// 准备的时间 重置 只关注for循环内
+	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		actual := lengthOfLongestSubstring(s)

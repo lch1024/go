@@ -32,6 +32,7 @@ func errWrapper(handler apiHandle) func(http.ResponseWriter, *http.Request) {
 			if r := recover(); r != nil {
 			}
 		}()
+
 		err := handler(writer, request)
 		if err != nil {
 			log.Warn("Error handling request: %s", err.Error())

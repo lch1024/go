@@ -1,0 +1,7 @@
+*.exe
+*.out
+main/fib.txt
+
+main/.idea/
+main/src/github.com/
+
