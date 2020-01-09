@@ -4,6 +4,7 @@ import (
 	"github.com/gpmgo/gopm/modules/log"
 	"io/ioutil"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 )
 
