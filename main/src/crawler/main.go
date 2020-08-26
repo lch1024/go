@@ -1,9 +1,8 @@
 package main
 
 import (
+	"crawler/fetcher"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"regexp"
 )
 
@@ -25,23 +24,11 @@ import (
 // 解析器：1.输入 utf-8编码文本 2.输出 Request{URL, 对应Parser}列表, Item列表
 
 func main() {
-	resp, err := http.Get("http://www.zhenai.com/zhenghun")
+	all, err := fetcher.Fetch("http://www.zhenai.com/zhenghun")
 	if nil != err {
 		panic(err)
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		fmt.Println("Error: status code", resp.StatusCode)
-		return
-	} else {
-		all, err := ioutil.ReadAll(resp.Body)
-		if nil != err {
-			panic(err)
-		}
-		//fmt.Printf("%s\n", all)
-		printCityList(all)
-	}
+	printCityList(all)
 
 }
 
